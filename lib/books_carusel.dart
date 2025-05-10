@@ -57,7 +57,11 @@ class BookCarousel extends StatelessWidget {
               final book = books[index];
               return GestureDetector(
                 onTap: () {
-                  Navigator.pushNamed(context, '/bookDetail', arguments: book);
+                  Navigator.pushNamed(
+                    context,
+                    '/bookDetail',
+                    arguments: book, // Передаем объект книги
+                  );
                 },
                 child: Container(
                   width: 120,
