@@ -27,10 +27,10 @@ class Book {
   Book({required this.title, required this.imageUrl});
 }
 
-class BookListScreen extends StatelessWidget {
+class BookListWidget extends StatelessWidget {
   final List<Book> books;
 
-  const BookListScreen({super.key, required this.books});
+  const BookListWidget({super.key, required this.books});
 
   @override
   Widget build(BuildContext context) {
@@ -71,10 +71,41 @@ class BookListScreen extends StatelessWidget {
 }
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+  final List<Book> books1 = [
+    Book(title: "House of Stars", imageUrl: "https://via.placeholder.com/150"),
+    Book(title: "Jil", imageUrl: "https://via.placeholder.com/150"),
+    Book(title: "A Sip of Sunset", imageUrl: "https://via.placeholder.com/150"),
+  ];
+
+  final List<Book> books2 = [
+    Book(title: "Sunset", imageUrl: "https://via.placeholder.com/150"),
+    Book(title: "Another Book", imageUrl: "https://via.placeholder.com/150"),
+  ];
+
+  HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      appBar: AppBar(
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text("ХАҢЫ КІТЕПТЕР"),
+            Text("барлығы", style: TextStyle(fontSize: 16, color: Colors.grey)),
+          ],
+        ),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            BookListWidget(books: books1),
+            SizedBox(height: 16),
+            BookListWidget(books: books2),
+          ],
+        ),
+      ),
+    );
   }
 }
