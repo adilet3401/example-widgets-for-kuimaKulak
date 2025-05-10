@@ -27,11 +27,21 @@ class BookCarousel extends StatelessWidget {
               Text(
                 title,
                 style: const TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w600,
                 ),
               ),
-              TextButton(onPressed: onSeeAll, child: const Text("бардыгы")),
+              TextButton(
+                onPressed: onSeeAll,
+                child: const Text(
+                  "бардыгы",
+                  style: TextStyle(
+                    color: Color(0xff3E424A),
+                    fontWeight: FontWeight.w400,
+                    fontSize: 12,
+                  ),
+                ),
+              ),
             ],
           ),
         ),
