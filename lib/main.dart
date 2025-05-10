@@ -1,5 +1,5 @@
-import 'package:example_kuima_kulak/book_in_screen.dart';
-import 'package:example_kuima_kulak/books_carusel.dart';
+import 'package:example_kuima_kulak/book_widget1/book_in_screen.dart';
+import 'package:example_kuima_kulak/book_widget1/books_carusel.dart';
 import 'package:flutter/material.dart';
 
 void main() {
