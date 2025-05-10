@@ -56,6 +56,11 @@ class BookListScreen extends StatelessWidget {
                     ),
                   ),
                 ),
+                SizedBox(height: 8),
+                Text(
+                  'бардыгы',
+                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
+                ),
               ],
             ),
           );
