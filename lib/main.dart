@@ -64,15 +64,34 @@ class HomeScreen extends StatelessWidget {
               ],
             ),
             SizedBox(height: 20),
-            widget2.BookCard(
-              book: widget2.Book(
-                title: 'Green Mile',
-                imageUrl: 'assets/2161c86c80f7a224f7c973010315073b03311c65.png',
-                author: '',
-                rating: 3,
-              ),
-              onPlayPressed: () {},
-              onBookmarkPressed: () {},
+            widget2.BookCarusel2(
+              sectionTitle: 'Ден соолук',
+              books: [
+                widget2.Book(
+                  title: 'Жашоонун кереметтери жана....',
+                  author: 'Мухаммад Абдуллах Драз',
+                  imageUrl: '',
+                  rating: 5,
+                ),
+                widget2.Book(
+                  title: 'Жашоонун кереметтери жана....',
+                  author: 'Мухаммад Абдуллах Драз',
+                  imageUrl: '',
+                  rating: 5,
+                ),
+                widget2.Book(
+                  title: 'Жашоонун кереметтери жана....',
+                  author: 'Мухаммад Абдуллах Драз',
+                  imageUrl: '',
+                  rating: 5,
+                ),
+                widget2.Book(
+                  title: 'Жашоонун кереметтери жана....',
+                  author: 'Мухаммад Абдуллах Драз',
+                  imageUrl: '',
+                  rating: 5,
+                ),
+              ],
             ),
           ],
         ),
@@ -80,3 +99,4 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
+//остановился на том что надо подровнять размер обложки книги, сделать его более большим, расстояние между ними и чтобы за края не выходил
