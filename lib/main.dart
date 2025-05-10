@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: HomeScreen(),
+      home: const HomeScreen(),
       routes: {'/bookDetail': (context) => const BookDetailScreen()},
     );
   }
@@ -31,7 +31,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.grey,
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Китептер',
           style: TextStyle(
             fontSize: 20,
@@ -49,91 +49,53 @@ class HomeScreen extends StatelessWidget {
               onSeeAll: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => BookDetailScreen()),
+                  MaterialPageRoute(
+                    builder: (context) => const BookDetailScreen(),
+                  ),
                 );
               },
               books: [
+                Book(title: "Жамийла", imageUrl: ""),
                 Book(
-                  title: "Жамийла",
-                  imagePath:
-                      "assets/2161c86c80f7a224f7c973010315073b03311c65.png",
+                  title: "Жамийла 2",
+                  imageUrl: "https://example.com/images/book2.png",
                 ),
                 Book(
-                  title: "Жамийла",
-                  imagePath:
-                      "assets/b73bb67fe1adbdbdfcee000485768a5e07fc9aba.png",
+                  title: "Жамийла 3",
+                  imageUrl: "https://example.com/images/book3.png",
                 ),
                 Book(
-                  title: "Жамийла",
-                  imagePath:
-                      "assets/e04a15805bb83452d4d6a368e889834b73fb3dcb.png",
-                ),
-                Book(
-                  title: "Жамийла",
-                  imagePath:
-                      "assets/e06014a98abc7dce2f3dadc70b5ffc27b8e80ef4.png",
+                  title: "Жамийла 4",
+                  imageUrl: "https://example.com/images/book4.png",
                 ),
               ],
             ),
             BookCarousel(
-              title: 'Тарых',
+              title: 'Романдар',
               onSeeAll: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => BookDetailScreen()),
+                  MaterialPageRoute(
+                    builder: (context) => const BookDetailScreen(),
+                  ),
                 );
               },
               books: [
                 Book(
-                  title: "Жамийла",
-                  imagePath:
-                      "assets/2161c86c80f7a224f7c973010315073b03311c65.png",
+                  title: "Роман 1",
+                  imageUrl: "https://example.com/images/novel1.png",
                 ),
                 Book(
-                  title: "Жамийла",
-                  imagePath:
-                      "assets/b73bb67fe1adbdbdfcee000485768a5e07fc9aba.png",
+                  title: "Роман 2",
+                  imageUrl: "https://example.com/images/novel2.png",
                 ),
                 Book(
-                  title: "Жамийла",
-                  imagePath:
-                      "assets/e04a15805bb83452d4d6a368e889834b73fb3dcb.png",
+                  title: "Роман 3",
+                  imageUrl: "https://example.com/images/novel3.png",
                 ),
                 Book(
-                  title: "Жамийла",
-                  imagePath:
-                      "assets/e06014a98abc7dce2f3dadc70b5ffc27b8e80ef4.png",
-                ),
-              ],
-            ),
-            BookCarousel(
-              title: 'Тарых',
-              onSeeAll: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => BookDetailScreen()),
-                );
-              },
-              books: [
-                Book(
-                  title: "Жамийла",
-                  imagePath:
-                      "assets/2161c86c80f7a224f7c973010315073b03311c65.png",
-                ),
-                Book(
-                  title: "Жамийла",
-                  imagePath:
-                      "assets/b73bb67fe1adbdbdfcee000485768a5e07fc9aba.png",
-                ),
-                Book(
-                  title: "Жамийла",
-                  imagePath:
-                      "assets/e04a15805bb83452d4d6a368e889834b73fb3dcb.png",
-                ),
-                Book(
-                  title: "Жамийла",
-                  imagePath:
-                      "assets/e06014a98abc7dce2f3dadc70b5ffc27b8e80ef4.png",
+                  title: "Роман 4",
+                  imageUrl: "https://example.com/images/novel4.png",
                 ),
               ],
             ),

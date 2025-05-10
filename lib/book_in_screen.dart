@@ -10,13 +10,32 @@ class BookDetailScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        // title: Text(book.title),
+        title: Text(book.title), // Отображаем название книги в AppBar
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(book.imagePath, height: 300),
+            Image.network(
+              book.imageUrl, // Загружаем изображение из интернета
+              height: 300,
+              fit: BoxFit.cover,
+              loadingBuilder: (context, child, loadingProgress) {
+                if (loadingProgress == null) return child;
+                return Center(
+                  child: CircularProgressIndicator(
+                    value:
+                        loadingProgress.expectedTotalBytes != null
+                            ? loadingProgress.cumulativeBytesLoaded /
+                                (loadingProgress.expectedTotalBytes ?? 1)
+                            : null,
+                  ),
+                );
+              },
+              errorBuilder: (context, error, stackTrace) {
+                return const Icon(Icons.broken_image, size: 300);
+              },
+            ),
             const SizedBox(height: 20),
             Text(
               book.title,

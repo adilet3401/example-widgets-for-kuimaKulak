@@ -1,4 +1,3 @@
-// import 'package:example_kuima_kulak/main.dart';
 import 'package:flutter/material.dart';
 
 class BookCarousel extends StatelessWidget {
@@ -71,11 +70,25 @@ class BookCarousel extends StatelessWidget {
                     children: [
                       ClipRRect(
                         borderRadius: BorderRadius.circular(12),
-                        child: Image.asset(
-                          book.imagePath,
+                        child: Image.network(
+                          book.imageUrl, // Загружаем изображение из сети
                           height: 160,
                           width: 120,
                           fit: BoxFit.cover,
+                          loadingBuilder: (context, child, loadingProgress) {
+                            if (loadingProgress == null) return child;
+                            return Center(
+                              child: CircularProgressIndicator(
+                                value: loadingProgress.expectedTotalBytes != null
+                                    ? loadingProgress.cumulativeBytesLoaded /
+                                        (loadingProgress.expectedTotalBytes ?? 1)
+                                    : null,
+                              ),
+                            );
+                          },
+                          errorBuilder: (context, error, stackTrace) {
+                            return const Icon(Icons.broken_image, size: 120);
+                          },
                         ),
                       ),
                       const SizedBox(height: 8),
@@ -94,7 +107,7 @@ class BookCarousel extends StatelessWidget {
 
 class Book {
   final String title;
-  final String imagePath;
+  final String imageUrl; // Изменено с imagePath на imageUrl
 
-  Book({required this.title, required this.imagePath});
+  Book({required this.title, required this.imageUrl});
 }
