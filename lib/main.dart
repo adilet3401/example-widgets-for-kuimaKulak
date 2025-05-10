@@ -56,18 +56,9 @@ class HomeScreen extends StatelessWidget {
               },
               books: [
                 Book(title: "Жамийла", imageUrl: ""),
-                Book(
-                  title: "Жамийла 2",
-                  imageUrl: "https://example.com/images/book2.png",
-                ),
-                Book(
-                  title: "Жамийла 3",
-                  imageUrl: "https://example.com/images/book3.png",
-                ),
-                Book(
-                  title: "Жамийла 4",
-                  imageUrl: "https://example.com/images/book4.png",
-                ),
+                Book(title: "Жамийла 2", imageUrl: ""),
+                Book(title: "Жамийла 3", imageUrl: ""),
+                Book(title: "Жамийла 4", imageUrl: ""),
               ],
             ),
             BookCarousel(
@@ -81,22 +72,10 @@ class HomeScreen extends StatelessWidget {
                 );
               },
               books: [
-                Book(
-                  title: "Роман 1",
-                  imageUrl: "https://example.com/images/novel1.png",
-                ),
-                Book(
-                  title: "Роман 2",
-                  imageUrl: "https://example.com/images/novel2.png",
-                ),
-                Book(
-                  title: "Роман 3",
-                  imageUrl: "https://example.com/images/novel3.png",
-                ),
-                Book(
-                  title: "Роман 4",
-                  imageUrl: "https://example.com/images/novel4.png",
-                ),
+                Book(title: "Роман 1", imageUrl: ""),
+                Book(title: "Роман 2", imageUrl: ""),
+                Book(title: "Роман 3", imageUrl: ""),
+                Book(title: "Роман 4", imageUrl: ""),
               ],
             ),
           ],
