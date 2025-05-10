@@ -1,5 +1,7 @@
-import 'package:example_kuima_kulak/book_widget1/book_in_screen.dart';
-import 'package:example_kuima_kulak/book_widget1/books_carusel.dart';
+import 'package:example_kuima_kulak/book_widget1/book_in_screen1.dart';
+import 'package:example_kuima_kulak/book_widget1/books_carusel1.dart'
+    as widget1;
+import 'package:example_kuima_kulak/book_wisget2/book_carusel2.dart' as widget2;
 import 'package:flutter/material.dart';
 
 void main() {
@@ -44,7 +46,7 @@ class HomeScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            BookCarousel(
+            widget1.BookCarousel(
               title: 'Тарых',
               onSeeAll: () {
                 Navigator.push(
@@ -55,28 +57,22 @@ class HomeScreen extends StatelessWidget {
                 );
               },
               books: [
-                Book(title: "Жамийла", imageUrl: ""),
-                Book(title: "Жамийла 2", imageUrl: ""),
-                Book(title: "Жамийла 3", imageUrl: ""),
-                Book(title: "Жамийла 4", imageUrl: ""),
+                widget1.Book(title: "Жамийла", imageUrl: ""),
+                widget1.Book(title: "Жамийла 2", imageUrl: ""),
+                widget1.Book(title: "Жамийла 3", imageUrl: ""),
+                widget1.Book(title: "Жамийла 4", imageUrl: ""),
               ],
             ),
-            BookCarousel(
-              title: 'Романдар',
-              onSeeAll: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const BookDetailScreen(),
-                  ),
-                );
-              },
-              books: [
-                Book(title: "Роман 1", imageUrl: ""),
-                Book(title: "Роман 2", imageUrl: ""),
-                Book(title: "Роман 3", imageUrl: ""),
-                Book(title: "Роман 4", imageUrl: ""),
-              ],
+            SizedBox(height: 20),
+            widget2.BookCard(
+              book: widget2.Book(
+                title: 'Green Mile',
+                imageUrl: 'assets/2161c86c80f7a224f7c973010315073b03311c65.png',
+                author: '',
+                rating: 3,
+              ),
+              onPlayPressed: () {},
+              onBookmarkPressed: () {},
             ),
           ],
         ),

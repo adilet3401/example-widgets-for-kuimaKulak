@@ -24,11 +24,12 @@ class BookCard extends StatelessWidget {
           Stack(
             children: [
               ClipRRect(
-                borderRadius: BorderRadius.circular(8),
-                child: Image.network(
-                  book.imageUrl,
-                  height: 180,
-                  width: 160,
+                borderRadius: BorderRadius.circular(4),
+                child: Image.asset(
+                  // book.imageUrl,
+                  'assets/w2.png',
+                  height: 200,
+                  width: 224,
                   fit: BoxFit.cover,
                 ),
               ),
@@ -77,13 +78,16 @@ class BookCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20),
                   ),
                 ),
-                child: const Text("Угуу"),
+                child: Text("Угуу", style: TextStyle(color: Colors.white)),
               ),
               const Spacer(),
               const Icon(Icons.star, color: Colors.amber, size: 18),
               Text(
                 book.rating.toString(),
-                style: const TextStyle(fontWeight: FontWeight.bold),
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.amber,
+                ),
               ),
             ],
           ),
