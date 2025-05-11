@@ -2,6 +2,7 @@ import 'package:example_kuima_kulak/book_widget1/book_in_screen1.dart';
 import 'package:example_kuima_kulak/book_widget1/books_carusel1.dart'
     as widget1;
 import 'package:example_kuima_kulak/book_wisget2/book_carusel2.dart' as widget2;
+import 'package:example_kuima_kulak/book_wisget2/book_in_screen2.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -20,7 +21,10 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
       home: const HomeScreen(),
-      routes: {'/bookDetail': (context) => const BookDetailScreen()},
+      routes: {
+        '/bookDetail1': (context) => const BookDetailScreen1(),
+        '/bookDetail2': (context) => BookDetailScreen2(),
+      },
     );
   }
 }
@@ -52,7 +56,7 @@ class HomeScreen extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const BookDetailScreen(),
+                    builder: (context) => const BookDetailScreen1(),
                   ),
                 );
               },
@@ -79,7 +83,7 @@ class HomeScreen extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 20),
+            // SizedBox(height: 20),
             widget2.BookCarusel2(
               sectionTitle: 'Ден соолук',
               books: [

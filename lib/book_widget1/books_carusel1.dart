@@ -58,7 +58,7 @@ class BookCarousel extends StatelessWidget {
                 onTap: () {
                   Navigator.pushNamed(
                     context,
-                    '/bookDetail',
+                    '/bookDetail1',
                     arguments: book, // Передаем объект книги
                   );
                 },
