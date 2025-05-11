@@ -1,3 +1,4 @@
+import 'package:example_kuima_kulak/audio_widget/audio_widget.dart';
 import 'package:example_kuima_kulak/book_model.dart';
 import 'package:example_kuima_kulak/book_widget1/book_in_screen1.dart';
 import 'package:example_kuima_kulak/book_widget1/books_carusel1.dart'
@@ -115,6 +116,39 @@ class HomeScreen extends StatelessWidget {
                 ),
               ],
             ),
+            AudioBookScrollWidget(
+              title: 'Жаңы аудио китептер \n7-13 апрельде',
+              subtitle: '80 китеп',
+              backgroundImageUrl:
+                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2MTdAbmZlaf0Upgxi8XQj6pB34fo7bwtQyQ&s',
+              books: [
+                AudioBook(
+                  author: 'А.Туракулова',
+                  imageUrl:
+                      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOoU3afWI3fih9ZO0Fuo1Y8NtLZK97vMSeNw&s',
+                  title: 'Баламды кантип тарбиялайм?',
+                ),
+                AudioBook(
+                  author: 'А.Туракулова',
+                  imageUrl:
+                      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOoU3afWI3fih9ZO0Fuo1Y8NtLZK97vMSeNw&s',
+                  title: 'Баламды кантип тарбиялайм?',
+                ),
+                AudioBook(
+                  author: 'А.Туракулова',
+                  imageUrl:
+                      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOoU3afWI3fih9ZO0Fuo1Y8NtLZK97vMSeNw&s',
+                  title: 'Баламды кантип тарбиялайм?',
+                ),
+                AudioBook(
+                  author: 'А.Туракулова',
+                  imageUrl:
+                      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOoU3afWI3fih9ZO0Fuo1Y8NtLZK97vMSeNw&s',
+                  title: 'Баламды кантип тарбиялайм?',
+                ),
+              ],
+            ),
+            SizedBox(height: 200),
           ],
         ),
       ),
