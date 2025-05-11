@@ -84,9 +84,8 @@ class HomeScreen extends StatelessWidget {
                 ),
               ],
             ),
-            // SizedBox(height: 20),
             widget2.BookCarusel2(
-              sectionTitle: 'Ден соолук',
+              sectionTitle: 'Ден соолук', //заголовок
               books: [
                 Book2(
                   title: 'Название',

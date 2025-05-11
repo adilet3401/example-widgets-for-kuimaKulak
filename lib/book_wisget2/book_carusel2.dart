@@ -1,20 +1,6 @@
 import 'package:example_kuima_kulak/book_model.dart';
 import 'package:flutter/material.dart';
 
-// class Book {
-//   final String title;
-//   final String author;
-//   final String imageUrl;
-//   final double rating;
-
-//   Book({
-//     required this.title,
-//     required this.author,
-//     required this.imageUrl,
-//     required this.rating,
-//   });
-// }
-
 class BookCarusel2 extends StatelessWidget {
   final String sectionTitle;
   final List<Book2> books;
