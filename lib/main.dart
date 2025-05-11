@@ -57,10 +57,26 @@ class HomeScreen extends StatelessWidget {
                 );
               },
               books: [
-                widget1.Book(title: "Жамийла", imageUrl: ""),
-                widget1.Book(title: "Жамийла 2", imageUrl: ""),
-                widget1.Book(title: "Жамийла 3", imageUrl: ""),
-                widget1.Book(title: "Жамийла 4", imageUrl: ""),
+                widget1.Book(
+                  title: "Green Mile",
+                  imageUrl:
+                      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWEZnYYvwPxS_EPf8g-ne8mnAVmu1som0H0A&s",
+                ),
+                widget1.Book(
+                  title: "Dune",
+                  imageUrl:
+                      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSu511u3XIsfgiDwiW8pvzeBqC2VKML-tkPXA&s",
+                ),
+                widget1.Book(
+                  title: "Game of thrones",
+                  imageUrl:
+                      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiCtTwp9bSRc7VltVNvfhXkbJCS0Kc8b3jtA&s",
+                ),
+                widget1.Book(
+                  title: "Lord of the rings",
+                  imageUrl:
+                      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEmIRwGWSmUR9IBb1PiCqmX8YBsUOS-3C18A&s",
+                ),
               ],
             ),
             SizedBox(height: 20),
@@ -99,4 +115,3 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-//остановился на том что надо подровнять размер обложки книги, сделать его более большим, расстояние между ними и чтобы за края не выходил

@@ -79,10 +79,14 @@ class BookCarousel extends StatelessWidget {
                             if (loadingProgress == null) return child;
                             return Center(
                               child: CircularProgressIndicator(
-                                value: loadingProgress.expectedTotalBytes != null
-                                    ? loadingProgress.cumulativeBytesLoaded /
-                                        (loadingProgress.expectedTotalBytes ?? 1)
-                                    : null,
+                                value:
+                                    loadingProgress.expectedTotalBytes != null
+                                        ? loadingProgress
+                                                .cumulativeBytesLoaded /
+                                            (loadingProgress
+                                                    .expectedTotalBytes ??
+                                                1)
+                                        : null,
                               ),
                             );
                           },
@@ -92,7 +96,14 @@ class BookCarousel extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 8),
-                      Text(book.title, style: const TextStyle(fontSize: 14)),
+                      Text(
+                        book.title,
+                        style: const TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.black,
+                        ),
+                      ),
                     ],
                   ),
                 ),

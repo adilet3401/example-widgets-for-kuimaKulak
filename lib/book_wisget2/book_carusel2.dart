@@ -40,7 +40,7 @@ class BookCarusel2 extends StatelessWidget {
         const SizedBox(height: 12),
         // Горизонтальный список карточек
         SizedBox(
-          height: 320,
+          height: 300, // Высота карточки
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: books.length,
@@ -50,31 +50,33 @@ class BookCarusel2 extends StatelessWidget {
               return Padding(
                 padding: const EdgeInsets.only(right: 12),
                 child: SizedBox(
-                  width: 180,
+                  width: 180, // Ширина карточки
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       // Обложка книги
                       ClipRRect(
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius: BorderRadius.circular(4),
                         child: Image.asset(
                           // book.imageUrl,
                           'assets/w2.png',
-                          height: 220,
+                          height: 180, // Квадратная форма
                           width: 180,
                           fit: BoxFit.cover,
+                          // Removed loadingBuilder as it is not supported by Image.asset
                           errorBuilder:
-                              (_, __, ___) => const Icon(Icons.broken_image),
+                              (_, __, ___) =>
+                                  const Icon(Icons.broken_image, size: 180),
                         ),
                       ),
-                      const SizedBox(height: 8),
+                      const SizedBox(height: 10),
                       // Название книги
                       Text(
                         book.title,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: const TextStyle(
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w600,
                           fontSize: 14,
                         ),
                       ),
@@ -82,9 +84,12 @@ class BookCarusel2 extends StatelessWidget {
                       // Автор
                       Text(
                         book.author,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                         style: const TextStyle(
                           fontSize: 12,
-                          color: Colors.grey,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.black,
                         ),
                       ),
                       const SizedBox(height: 8),
@@ -112,7 +117,7 @@ class BookCarusel2 extends StatelessWidget {
                           const Icon(Icons.star, color: Colors.amber, size: 18),
                           const SizedBox(width: 2),
                           Text(
-                            book.rating.toString(),
+                            book.rating.toStringAsFixed(1),
                             style: const TextStyle(
                               fontWeight: FontWeight.bold,
                               color: Colors.amber,
