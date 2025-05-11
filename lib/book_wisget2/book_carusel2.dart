@@ -24,7 +24,7 @@ class BookCarusel2 extends StatelessWidget {
             style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
         ),
-        const SizedBox(height: 12),
+        const SizedBox(height: 12), //расстояние между заголовком и обложкой
         // Горизонтальный список карточек
         SizedBox(
           height: 300, // Высота карточки
@@ -46,11 +46,9 @@ class BookCarusel2 extends StatelessWidget {
                         borderRadius: BorderRadius.circular(4),
                         child: Image.network(
                           book.imageUrl,
-                          // 'assets/w2.png',
                           height: 180, // Квадратная форма
                           width: 180,
                           fit: BoxFit.cover,
-                          // Removed loadingBuilder as it is not supported by Image.asset
                           errorBuilder:
                               (_, __, ___) =>
                                   const Icon(Icons.broken_image, size: 180),
