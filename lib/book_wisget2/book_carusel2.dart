@@ -1,22 +1,23 @@
+import 'package:example_kuima_kulak/book_model.dart';
 import 'package:flutter/material.dart';
 
-class Book {
-  final String title;
-  final String author;
-  final String imageUrl;
-  final double rating;
+// class Book {
+//   final String title;
+//   final String author;
+//   final String imageUrl;
+//   final double rating;
 
-  Book({
-    required this.title,
-    required this.author,
-    required this.imageUrl,
-    required this.rating,
-  });
-}
+//   Book({
+//     required this.title,
+//     required this.author,
+//     required this.imageUrl,
+//     required this.rating,
+//   });
+// }
 
 class BookCarusel2 extends StatelessWidget {
   final String sectionTitle;
-  final List<Book> books;
+  final List<Book2> books;
 
   const BookCarusel2({
     super.key,
@@ -57,9 +58,9 @@ class BookCarusel2 extends StatelessWidget {
                       // Обложка книги
                       ClipRRect(
                         borderRadius: BorderRadius.circular(4),
-                        child: Image.asset(
-                          // book.imageUrl,
-                          'assets/w2.png',
+                        child: Image.network(
+                          book.imageUrl,
+                          // 'assets/w2.png',
                           height: 180, // Квадратная форма
                           width: 180,
                           fit: BoxFit.cover,
@@ -97,13 +98,19 @@ class BookCarusel2 extends StatelessWidget {
                       Row(
                         children: [
                           ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.pushNamed(
+                                context,
+                                '/bookDetail2',
+                                arguments: book,
+                              );
+                            },
                             style: ElevatedButton.styleFrom(
                               padding: const EdgeInsets.symmetric(
                                 horizontal: 12,
                                 vertical: 6,
                               ),
-                              backgroundColor: Colors.blue,
+                              backgroundColor: Color(0xff0284C7),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20),
                               ),
