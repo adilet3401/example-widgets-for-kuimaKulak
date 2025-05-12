@@ -10,7 +10,7 @@ class AudioBook {
   });
 }
 
-class AudioBookScrollWidget extends StatelessWidget {
+class AudioBookScrollWidget extends StatefulWidget {
   final String title;
   final String subtitle;
   final List<AudioBook> books;
@@ -25,6 +25,38 @@ class AudioBookScrollWidget extends StatelessWidget {
   });
 
   @override
+  _AudioBookScrollWidgetState createState() => _AudioBookScrollWidgetState();
+}
+
+class _AudioBookScrollWidgetState extends State<AudioBookScrollWidget> {
+  final ScrollController _scrollController = ScrollController();
+  bool _isScrolled = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(_onScroll);
+  }
+
+  void _onScroll() {
+    if (_scrollController.offset > 0 && !_isScrolled) {
+      setState(() {
+        _isScrolled = true;
+      });
+    } else if (_scrollController.offset == 0 && _isScrolled) {
+      setState(() {
+        _isScrolled = false;
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(16),
@@ -33,9 +65,9 @@ class AudioBookScrollWidget extends StatelessWidget {
           // Фоновое изображение с затемнением
           SizedBox(
             width: double.infinity,
-            height: 240, //размер фоновой изображении
+            height: 240,
             child: Image.network(
-              backgroundImageUrl,
+              widget.backgroundImageUrl,
               fit: BoxFit.cover,
               color: Colors.black.withOpacity(0.6),
               colorBlendMode: BlendMode.darken,
@@ -51,7 +83,7 @@ class AudioBookScrollWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      title,
+                      widget.title,
                       style: const TextStyle(
                         color: Colors.white,
                         fontSize: 22,
@@ -59,7 +91,7 @@ class AudioBookScrollWidget extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      subtitle,
+                      widget.subtitle,
                       style: const TextStyle(
                         color: Colors.white70,
                         fontSize: 16,
@@ -68,32 +100,22 @@ class AudioBookScrollWidget extends StatelessWidget {
                   ],
                 ),
               ),
-              // Text(
-              //   title,
-              //   style: const TextStyle(
-              //     color: Colors.white,
-              //     fontSize: 22,
-              //     fontWeight: FontWeight.bold,
-              //   ),
-              // ),
-              // Text(
-              //   subtitle,
-              //   style: const TextStyle(color: Colors.white70, fontSize: 16),
-              // ),
               const SizedBox(height: 36),
-              Padding(
-                padding: const EdgeInsets.only(left: 10),
-                child: SizedBox(
-                  height: 230,
-                  child: ListView.separated(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: books.length,
-                    padding: EdgeInsets.zero,
-                    separatorBuilder: (_, __) => const SizedBox(width: 14),
-                    itemBuilder: (context, index) {
-                      return AudioBookCard(book: books[index]);
-                    },
-                  ),
+              SizedBox(
+                height: 230,
+                child: ListView.builder(
+                  controller: _scrollController,
+                  scrollDirection: Axis.horizontal,
+                  itemCount: widget.books.length,
+                  padding: EdgeInsets.only(
+                    left: _isScrolled ? 0 : 15,
+                  ), // Динамический отступ
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.only(right: 15),
+                      child: AudioBookCard(book: widget.books[index]),
+                    );
+                  },
                 ),
               ),
             ],
@@ -127,52 +149,28 @@ class AudioBookCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Обложка книги с рамкой
           Container(
             decoration: BoxDecoration(
               borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(4),
                 topRight: Radius.circular(4),
               ),
-              border: Border.all(
-                color: Colors.white, // Цвет рамки
-                width: 4, // Толщина рамки
-              ),
+              border: Border.all(color: Colors.white, width: 4),
             ),
-            child: Stack(
-              children: [
-                ClipRRect(
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(12),
-                    topRight: Radius.circular(12),
-                  ),
-                  child: Image.network(
-                    book.imageUrl,
-                    width: 140,
-                    height: 146,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                // Полупрозрачный фон
-                // Positioned.fill(
-                //   child: Container(
-                //     decoration: BoxDecoration(
-                //       gradient: LinearGradient(
-                //         colors: [
-                //           Colors.black.withOpacity(0.6),
-                //           Colors.transparent,
-                //         ],
-                //         // begin: Alignment.bottomCenter,
-                //         // end: Alignment.topCenter,
-                //       ),
-                //     ),
-                //   ),
-                // ),
-              ],
+            child: ClipRRect(
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(12),
+                topRight: Radius.circular(12),
+              ),
+              child: Image.network(
+                book.imageUrl,
+                width: 140,
+                height: 146,
+                fit: BoxFit.cover,
+              ),
             ),
           ),
           const SizedBox(height: 8),
-          // Название книги
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8),
             child: Text(
@@ -183,7 +181,6 @@ class AudioBookCard extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 4),
-          // Автор книги
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8),
             child: Text(
