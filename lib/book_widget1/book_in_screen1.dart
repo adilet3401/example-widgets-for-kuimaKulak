@@ -7,7 +7,6 @@ class BookDetailScreen1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final book = ModalRoute.of(context)!.settings.arguments as Book;
-
     return Scaffold(
       appBar: AppBar(
         title: Text(book.title), // Отображаем название книги в AppBar
