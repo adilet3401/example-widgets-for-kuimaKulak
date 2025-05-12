@@ -1,3 +1,4 @@
+import 'package:example_kuima_kulak/audio_widget/audio_book_detail.dart';
 import 'package:flutter/material.dart';
 
 class AudioBook {
@@ -113,6 +114,14 @@ class _AudioBookScrollWidgetState extends State<AudioBookScrollWidget> {
                         ), // Отступ между карточками
                         child: AudioBookCard(
                           book: widget.books[index],
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => AudioBookDetail(),
+                              ),
+                            );
+                          },
                         ), // Карточка книги
                       );
                     },
@@ -129,82 +138,89 @@ class _AudioBookScrollWidgetState extends State<AudioBookScrollWidget> {
 
 class AudioBookCard extends StatelessWidget {
   final AudioBook book;
+  final void Function()? onTap;
 
-  const AudioBookCard({super.key, required this.book});
+  const AudioBookCard({super.key, required this.book, this.onTap});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      // Карточка аудиокниги
-      width: 140, // Ширина карточки
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(4), // Закругленные углы
-        color: Colors.white, // Цвет фона карточки
-        boxShadow: [
-          // Тень карточки
-          BoxShadow(
-            color: Colors.black.withOpacity(0.2),
-            blurRadius: 6,
-            offset: const Offset(0, 4),
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            // Обложка книги
-            decoration: BoxDecoration(
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(4),
-                topRight: Radius.circular(4),
+    return InkWell(
+      onTap: onTap, // Обработка нажатия
+      child: Container(
+        // Карточка аудиокниги
+        width: 140, // Ширина карточки
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(4), // Закругленные углы
+          color: Colors.white, // Цвет фона карточки
+          boxShadow: [
+            // Тень карточки
+            BoxShadow(
+              color: Colors.black.withOpacity(0.2),
+              blurRadius: 6,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              // Обложка книги
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(4),
+                  topRight: Radius.circular(4),
+                ),
+                border: Border.all(
+                  color: Colors.white,
+                  width: 4,
+                ), // Белая рамка вокруг обложки
               ),
-              border: Border.all(
-                color: Colors.white,
-                width: 4,
-              ), // Белая рамка вокруг обложки
-            ),
-            child: ClipRRect(
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(4),
-                topRight: Radius.circular(4),
-              ),
-              child: Image.network(
-                book.imageUrl, // Ссылка на изображение обложки
-                width: 140,
-                height: 150,
-                fit: BoxFit.cover, // Масштабирование изображения
+              child: ClipRRect(
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(4),
+                  topRight: Radius.circular(4),
+                ),
+                child: Image.network(
+                  book.imageUrl, // Ссылка на изображение обложки
+                  width: 140,
+                  height: 150,
+                  fit: BoxFit.cover, // Масштабирование изображения
+                ),
               ),
             ),
-          ),
-          const SizedBox(height: 7), // Отступ между обложкой и текстом
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 8,
-            ), // Горизонтальные отступы
-            child: Text(
-              book.title, // Название книги
-              maxLines: 2, // Ограничение по количеству строк
-              overflow:
-                  TextOverflow.ellipsis, // Обрезка текста при переполнении
-              style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w500),
+            const SizedBox(height: 7), // Отступ между обложкой и текстом
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 8,
+              ), // Горизонтальные отступы
+              child: Text(
+                book.title, // Название книги
+                maxLines: 2, // Ограничение по количеству строк
+                overflow:
+                    TextOverflow.ellipsis, // Обрезка текста при переполнении
+                style: const TextStyle(
+                  fontSize: 13,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
             ),
-          ),
-          const SizedBox(height: 4), // Отступ между названием и автором
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 8,
-            ), // Горизонтальные отступы
-            child: Text(
-              book.author, // Автор книги
-              maxLines: 1, // Ограничение по количеству строк
-              overflow:
-                  TextOverflow.ellipsis, // Обрезка текста при переполнении
-              style: const TextStyle(fontSize: 10, color: Colors.grey),
+            const SizedBox(height: 4), // Отступ между названием и автором
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 8,
+              ), // Горизонтальные отступы
+              child: Text(
+                book.author, // Автор книги
+                maxLines: 1, // Ограничение по количеству строк
+                overflow:
+                    TextOverflow.ellipsis, // Обрезка текста при переполнении
+                style: const TextStyle(fontSize: 10, color: Colors.grey),
+              ),
             ),
-          ),
-          const SizedBox(height: 8), // Отступ внизу карточки
-        ],
+            const SizedBox(height: 8), // Отступ внизу карточки
+          ],
+        ),
       ),
     );
   }

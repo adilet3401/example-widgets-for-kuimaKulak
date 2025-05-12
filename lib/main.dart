@@ -1,3 +1,4 @@
+import 'package:example_kuima_kulak/audio_widget/audio_book_detail.dart';
 import 'package:example_kuima_kulak/audio_widget/audio_widget.dart';
 import 'package:example_kuima_kulak/book_model.dart';
 import 'package:example_kuima_kulak/book_widget1/book_in_screen1.dart';
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/bookDetail1': (context) => const BookDetailScreen1(),
         '/bookDetail2': (context) => BookDetailScreen2(),
+        'audioBookdetail': (context) => AudioBookDetail(),
       },
     );
   }
