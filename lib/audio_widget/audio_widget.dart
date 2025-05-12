@@ -59,13 +59,13 @@ class _AudioBookScrollWidgetState extends State<AudioBookScrollWidget> {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.circular(16),
+      borderRadius: BorderRadius.circular(16), //bgc image
       child: Stack(
         children: [
           // Фоновое изображение с затемнением
           SizedBox(
             width: double.infinity,
-            height: 240,
+            height: 240, //bgc image
             child: Image.network(
               widget.backgroundImageUrl,
               fit: BoxFit.cover,
@@ -86,7 +86,7 @@ class _AudioBookScrollWidgetState extends State<AudioBookScrollWidget> {
                       widget.title,
                       style: const TextStyle(
                         color: Colors.white,
-                        fontSize: 22,
+                        fontSize: 23, //заголовок
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -102,7 +102,7 @@ class _AudioBookScrollWidgetState extends State<AudioBookScrollWidget> {
               ),
               const SizedBox(height: 36),
               SizedBox(
-                height: 230,
+                height: 230, //размер дочерниз виджетов
                 child: ListView.builder(
                   controller: _scrollController,
                   scrollDirection: Axis.horizontal,
@@ -134,13 +134,15 @@ class AudioBookCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      // карточка аудио книги
       width: 140,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(4),
         color: Colors.white,
         boxShadow: [
+          // тень карточки
           BoxShadow(
-            color: Colors.black.withOpacity(0.1),
+            color: Colors.black.withOpacity(0.2),
             blurRadius: 6,
             offset: Offset(0, 4),
           ),
@@ -159,18 +161,18 @@ class AudioBookCard extends StatelessWidget {
             ),
             child: ClipRRect(
               borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(12),
-                topRight: Radius.circular(12),
+                topLeft: Radius.circular(4),
+                topRight: Radius.circular(4),
               ),
               child: Image.network(
                 book.imageUrl,
                 width: 140,
-                height: 146,
+                height: 150,
                 fit: BoxFit.cover,
               ),
             ),
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 7),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8),
             child: Text(
