@@ -33,7 +33,7 @@ class AudioBookScrollWidget extends StatelessWidget {
           // Фоновое изображение с затемнением
           SizedBox(
             width: double.infinity,
-            height: 240,
+            height: 240, //размер фоновой изображении
             child: Image.network(
               backgroundImageUrl,
               fit: BoxFit.cover,
