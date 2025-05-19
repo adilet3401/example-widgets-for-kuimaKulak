@@ -26,6 +26,7 @@ class AudioBookScrollWidget extends StatefulWidget {
   });
 
   @override
+  // ignore: library_private_types_in_public_api
   _AudioBookScrollWidgetState createState() => _AudioBookScrollWidgetState();
 }
 
@@ -55,6 +56,7 @@ class _AudioBookScrollWidgetState extends State<AudioBookScrollWidget> {
             child: Image.network(
               widget.backgroundImageUrl,
               fit: BoxFit.cover,
+              // ignore: deprecated_member_use
               color: Colors.black.withOpacity(0.6), // Затемнение изображения
               colorBlendMode: BlendMode.darken,
             ),
@@ -155,6 +157,7 @@ class AudioBookCard extends StatelessWidget {
           boxShadow: [
             // Тень карточки
             BoxShadow(
+              // ignore: deprecated_member_use
               color: Colors.black.withOpacity(0.2),
               blurRadius: 6,
               offset: const Offset(0, 4),
