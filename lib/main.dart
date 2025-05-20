@@ -1,11 +1,9 @@
 import 'package:example_kuima_kulak/audio_widget/audio_book_detail.dart';
 import 'package:example_kuima_kulak/audio_widget/audio_widget.dart';
 import 'package:example_kuima_kulak/book_model.dart';
-import 'package:example_kuima_kulak/book_widget1/book_in_screen1.dart';
 import 'package:example_kuima_kulak/book_widget1/books_carusel1.dart'
     as widget1;
 import 'package:example_kuima_kulak/book_wisget2/book_carusel2.dart' as widget2;
-import 'package:example_kuima_kulak/book_wisget2/book_in_screen2.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -25,8 +23,8 @@ class MyApp extends StatelessWidget {
       ),
       home: const HomeScreen(),
       routes: {
-        '/bookDetail1': (context) => const BookDetailScreen1(),
-        '/bookDetail2': (context) => BookDetailScreen2(),
+        '/bookDetail1': (context) => const widget1.BookDetailScreen1(),
+        '/bookDetail2': (context) => widget2.BookDetailScreen2(),
         'audioBookdetail': (context) => AudioBookDetail(),
       },
     );
@@ -60,7 +58,7 @@ class HomeScreen extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const BookDetailScreen1(),
+                    builder: (context) => const widget1.BookDetailScreen1(),
                   ),
                 );
               },
