@@ -1,6 +1,5 @@
 import 'package:example_kuima_kulak/audio_widget/audio_book_detail.dart';
 import 'package:example_kuima_kulak/audio_widget/audio_widget.dart';
-import 'package:example_kuima_kulak/book_model.dart';
 import 'package:example_kuima_kulak/book_widget1/books_carusel1.dart'
     as widget1;
 import 'package:example_kuima_kulak/book_wisget2/book_carusel2.dart' as widget2;
@@ -88,27 +87,27 @@ class HomeScreen extends StatelessWidget {
             widget2.BookCarusel2(
               sectionTitle: 'Ден соолук', //заголовок
               books: [
-                Book2(
+                widget2.Book2(
                   title: 'Название',
                   author: 'Автор',
                   imageUrl:
                       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRt7IvaU-lDY_jW7lKzJppZUnrpZVolruYh0g&s',
                   rating: 5,
                 ),
-                Book2(
+                widget2.Book2(
                   title: 'Название',
                   author: 'Автор',
                   imageUrl: 'https://avidreaders.ru/pics/4/5/1245.jpg',
                   rating: 5,
                 ),
-                Book2(
+                widget2.Book2(
                   title: 'Название',
                   author: 'Author',
                   imageUrl:
                       'https://upload.wikimedia.org/wikipedia/ru/4/49/Game_of_Thrones.jpg',
                   rating: 5,
                 ),
-                Book2(
+                widget2.Book2(
                   title: 'Nazvanie',
                   author: 'Author',
                   imageUrl: 'https://i.ytimg.com/vi/Dz2sT_o2KGQ/hqdefault.jpg',
