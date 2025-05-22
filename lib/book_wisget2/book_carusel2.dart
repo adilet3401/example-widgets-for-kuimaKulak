@@ -1,4 +1,3 @@
-import 'package:example_kuima_kulak/book_model.dart';
 import 'package:flutter/material.dart';
 
 class BookCarusel2 extends StatelessWidget {
