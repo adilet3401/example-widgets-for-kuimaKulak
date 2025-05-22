@@ -1,4 +1,3 @@
-import 'package:example_kuima_kulak/audio_widget/audio_book_detail.dart';
 import 'package:flutter/material.dart';
 
 class AudioBook {
