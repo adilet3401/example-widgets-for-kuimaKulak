@@ -128,8 +128,6 @@ class BookCarusel2 extends StatelessWidget {
   }
 }
 
-
-
 class BookDetailScreen2 extends StatelessWidget {
   const BookDetailScreen2({super.key});
 
@@ -192,8 +190,6 @@ class BookDetailScreen2 extends StatelessWidget {
   }
 }
 
-
-// book_model.dart
 class Book2 {
   final String title;
   final String author;
