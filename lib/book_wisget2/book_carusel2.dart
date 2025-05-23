@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
-class BookCarusel2 extends StatelessWidget {
+// Глобальный список избранных книг (для простоты примера)
+final List<Book2> favoriteBooks = [];
+
+class BookCarusel2 extends StatefulWidget {
   final String sectionTitle;
   final List<Book2> books;
 
@@ -11,118 +14,256 @@ class BookCarusel2 extends StatelessWidget {
   });
 
   @override
+  State<BookCarusel2> createState() => _BookCarusel2State();
+}
+
+class _BookCarusel2State extends State<BookCarusel2> {
+  bool isFavorite(Book2 book) => favoriteBooks.contains(book);
+
+  void toggleFavorite(Book2 book) {
+    setState(() {
+      if (isFavorite(book)) {
+        favoriteBooks.remove(book);
+      } else {
+        favoriteBooks.add(book);
+      }
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // Заголовок
+        // Заголовок + кнопка перехода к избранным
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Text(
-            sectionTitle,
-            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          child: Row(
+            children: [
+              Text(
+                widget.sectionTitle,
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const Spacer(),
+              IconButton(
+                icon: const Icon(Icons.bookmark, color: Colors.white),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => FavoritesScreen()),
+                  );
+                },
+              ),
+            ],
           ),
         ),
-        const SizedBox(height: 12), //расстояние между заголовком и обложкой
-        // Горизонтальный список карточек
+        const SizedBox(height: 12),
         SizedBox(
-          height: 300, // Высота карточки
+          height: 300,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: books.length,
+            itemCount: widget.books.length,
             padding: const EdgeInsets.symmetric(horizontal: 16),
             itemBuilder: (context, index) {
-              final book = books[index];
+              final book = widget.books[index];
               return Padding(
                 padding: const EdgeInsets.only(right: 12),
-                child: SizedBox(
-                  width: 180, // Ширина карточки
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      // Обложка книги
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(4),
-                        child: Image.network(
-                          book.imageUrl,
-                          height: 180, // Квадратная форма
-                          width: 180,
-                          fit: BoxFit.cover,
-                          errorBuilder:
-                              (_, __, ___) =>
-                                  const Icon(Icons.broken_image, size: 180),
-                        ),
+                child: Stack(
+                  children: [
+                    // Карточка книги
+                    Container(
+                      width: 200,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(12),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black12,
+                            blurRadius: 6,
+                            offset: Offset(0, 2),
+                          ),
+                        ],
                       ),
-                      const SizedBox(height: 10),
-                      // Название книги
-                      Text(
-                        book.title,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 14,
-                        ),
-                      ),
-                      const SizedBox(height: 2),
-                      // Автор
-                      Text(
-                        book.author,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.black,
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      // Кнопка и звезда
-                      Row(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          ElevatedButton(
-                            onPressed: () {
-                              Navigator.pushNamed(
-                                context,
-                                '/bookDetail2',
-                                arguments: book,
-                              );
-                            },
-                            style: ElevatedButton.styleFrom(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 12,
-                                vertical: 6,
-                              ),
-                              backgroundColor: Color(0xff0284C7),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                            ),
-                            child: const Text(
-                              "Угуу",
-                              style: TextStyle(color: Colors.white),
+                          // Обложка книги
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: Image.network(
+                              book.imageUrl,
+                              height: 180,
+                              width: 180,
+                              fit: BoxFit.cover,
+                              errorBuilder:
+                                  (_, __, ___) =>
+                                      const Icon(Icons.broken_image, size: 180),
                             ),
                           ),
-                          const Spacer(),
-                          const Icon(Icons.star, color: Colors.amber, size: 18),
-                          const SizedBox(width: 2),
-                          Text(
-                            book.rating.toStringAsFixed(1),
-                            style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.amber,
+                          const SizedBox(height: 10),
+                          // Название книги
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 8.0,
+                            ),
+                            child: Text(
+                              book.title,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 14,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 2),
+                          // Автор
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 8.0,
+                            ),
+                            child: Text(
+                              book.author,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: const TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 8),
+                          // Кнопка и звезда
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 8.0,
+                            ),
+                            child: Row(
+                              children: [
+                                ElevatedButton(
+                                  onPressed: () {
+                                    Navigator.pushNamed(
+                                      context,
+                                      '/bookDetail2',
+                                      arguments: book,
+                                    );
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 12,
+                                      vertical: 6,
+                                    ),
+                                    backgroundColor: Color(0xff0284C7),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                  ),
+                                  child: const Text(
+                                    "Угуу",
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                ),
+                                const Spacer(),
+                                const Icon(
+                                  Icons.star,
+                                  color: Colors.amber,
+                                  size: 18,
+                                ),
+                                const SizedBox(width: 2),
+                                Text(
+                                  book.rating.toStringAsFixed(1),
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.amber,
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ],
                       ),
-                    ],
-                  ),
+                    ),
+                    // Иконка избранного в углу
+                    Positioned(
+                      top: 8,
+                      right: 8,
+                      child: GestureDetector(
+                        onTap: () => toggleFavorite(book),
+                        child: CircleAvatar(
+                          backgroundColor: Colors.white,
+                          child: Icon(
+                            isFavorite(book)
+                                ? Icons.bookmark
+                                : Icons.bookmark_border,
+                            color:
+                                isFavorite(book) ? Colors.blue : Colors.black54,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               );
             },
           ),
         ),
       ],
+    );
+  }
+}
+
+// Экран избранных книг
+class FavoritesScreen extends StatefulWidget {
+  @override
+  State<FavoritesScreen> createState() => _FavoritesScreenState();
+}
+
+class _FavoritesScreenState extends State<FavoritesScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Избранные книги')),
+      body:
+          favoriteBooks.isEmpty
+              ? Center(child: Text('Нет избранных книг'))
+              : ListView.builder(
+                itemCount: favoriteBooks.length,
+                itemBuilder: (context, index) {
+                  final book = favoriteBooks[index];
+                  return ListTile(
+                    leading: Image.network(
+                      book.imageUrl,
+                      width: 50,
+                      height: 50,
+                      fit: BoxFit.cover,
+                      errorBuilder:
+                          (_, __, ___) =>
+                              const Icon(Icons.broken_image, size: 50),
+                    ),
+                    title: Text(book.title),
+                    subtitle: Text(book.author),
+                    trailing: IconButton(
+                      icon: Icon(Icons.delete, color: Colors.red),
+                      onPressed: () {
+                        setState(() {
+                          favoriteBooks.remove(book);
+                        });
+                      },
+                    ),
+                    onTap: () {
+                      Navigator.pushNamed(
+                        context,
+                        '/bookDetail2',
+                        arguments: book,
+                      );
+                    },
+                  );
+                },
+              ),
     );
   }
 }
@@ -201,4 +342,17 @@ class Book2 {
     required this.imageUrl,
     required this.rating,
   });
+
+  // Для корректного сравнения книг
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Book2 &&
+          runtimeType == other.runtimeType &&
+          title == other.title &&
+          author == other.author &&
+          imageUrl == other.imageUrl;
+
+  @override
+  int get hashCode => title.hashCode ^ author.hashCode ^ imageUrl.hashCode;
 }
